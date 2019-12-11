@@ -1,0 +1,39 @@
+---
+  
+   - name: check isntall NFS
+     yum :
+      name={{ item }}
+      state=installed
+     with_items:
+      - nfs-utils
+
+   - name: Creates directory
+     file:
+      path: nfsexport
+      state: directory
+
+   - name: copy exports
+     template:
+      src=exports.j2
+      dest=/etc/exports
+      owner=root
+      group=root
+      mode=755
+
+   - name : change firewall settings
+     firewalld:
+      service: "{{ item }}"
+      permanent: yes
+      state: enabled
+      immediate: yes
+     with_items:
+      - nfs
+      - rpc-bind
+      - mountd
+
+   - name: start services
+     service:
+      name=nfs
+      state=restarted
+      enabled=yes
+
