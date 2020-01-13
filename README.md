@@ -11,7 +11,8 @@ RedHat 6-7
 Role Variables
 --------------
 
-In a defaults/main you can set the path and name for folder that you want create or set as available for network mounting 
+In a defaults/main you can set the path and name for folder that you want create or set as available for network mounting
+and set the host or network that you want to be able to connect to that network share
 
 Example Playbook
 ----------------
