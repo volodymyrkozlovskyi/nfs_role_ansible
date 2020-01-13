@@ -1,3 +1,4 @@
 ---
  
  nfsexport: '/nfsshare'
+ destination: 'network_or_ip_addr'
